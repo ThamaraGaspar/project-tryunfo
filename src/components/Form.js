@@ -83,7 +83,7 @@ class Form extends React.Component {
         <br />
         <br />
         <label htmlFor="checkboxInput">
-          Super Trybe Trunfo
+          Super Trybe Trunfo:
           <input
             type="checkbox"
             data-testid="trunfo-input"
