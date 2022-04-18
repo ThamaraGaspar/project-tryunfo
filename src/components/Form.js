@@ -15,122 +15,121 @@ class Form extends React.Component {
       /* hasTrunfo, */
       isSaveButtonDisabled,
       onInputChange,
-      onSaveButtonClick } = this.props;
+      onSaveButtonClick,
+    } = this.props;
     return (
-      <form>
-        <label htmlFor="name">
-          Nome:
-          <br />
-          <input
-            type="text"
-            data-testid="name-input"
-            name="name"
-            value={ cardName }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="description">
-          Descrição:
-          <br />
-          <input
-            type="text"
-            data-testid="description-input"
-            name="description"
-            value={ cardDescription }
-            onChange={ onInputChange }
-          />
-        </label>
-        <label htmlFor="attr1">
-          Attr1
+      <div>
+        <form>
+          <label htmlFor="name-input">
+            Nome:
+            <br />
+            <input
+              type="text"
+              data-testid="name-input"
+              name="cardName"
+              value={ cardName }
+              onChange={ onInputChange }
+            />
+          </label>
           <br />
           <br />
+          <label htmlFor="description-input">
+            Descrição:
+            <br />
+            <input
+              type="text"
+              data-testid="description-input"
+              name="cardDescription"
+              value={ cardDescription }
+              onChange={ onInputChange }
+            />
+          </label>
+          <label htmlFor="attr1-input">
+            Attr1
+            <br />
+            <br />
 
-          <input
-            type="number"
-            data-testid="attr1-input"
-            name="attr1"
-            value={ cardAttr1 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <label htmlFor="attr2">
-          Attr2
+            <input
+              type="number"
+              data-testid="attr1-input"
+              name="cardAttr1"
+              value={ cardAttr1 }
+              onChange={ onInputChange }
+            />
+          </label>
+          <label htmlFor="attr2-input">
+            Attr2
+            <input
+              type="number"
+              data-testid="attr2-input"
+              name="cardAttr2"
+              value={ cardAttr2 }
+              onChange={ onInputChange }
+            />
+          </label>
+          <label htmlFor="attr3-input">
+            Attr3
+            <input
+              type="number"
+              data-testid="attr3-input"
+              name="cardAttr3"
+              value={ cardAttr3 }
+              onChange={ onInputChange }
+            />
+          </label>
+          <br />
+          <label htmlFor="image-input">
+            Adicionar Imagem:
+            <input
+              type="text"
+              data-testid="image-input"
+              value={ cardImage }
+              onChange={ onInputChange }
+              name="cardImage"
+            />
+          </label>
+          <label htmlFor="optionsInput">
+            Raridade:
+            <br />
+            <br />
+            <select
+              data-testid="rare-input"
+              value={ cardRare }
+              onChange={ onInputChange }
+              name="cardRare"
+            >
+              <option>normal</option>
+              <option>raro</option>
+              <option>muito raro</option>
+            </select>
+          </label>
           <br />
           <br />
-          <input
-            type="number"
-            data-testid="attr2-input"
-            name="attr2"
-            value={ cardAttr2 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <label htmlFor="attr3">
-          Attr3
+          <div>
+            <label htmlFor="checkboxInput">
+              Super Trybe Trunfo
+              <input
+                name="cardTrunfo"
+                type="checkbox"
+                data-testid="trunfo-input"
+                checked={ cardTrunfo }
+                onChange={ onInputChange }
+              />
+
+            </label>
+          </div>
           <br />
           <br />
-          <input
-            type="number"
-            data-testid="attr3-input"
-            name="attr3"
-            value={ cardAttr3 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="inputImage">
-          Adicionar Imagem:
-          <br />
-          <br />
-          <input
-            type="text"
-            data-testid="image-input"
-            value={ cardImage }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="optionsInput">
-          Raridade:
-          <br />
-          <br />
-          <select
-            data-testid="rare-input"
-            value={ cardRare }
-            onChange={ onInputChange }
+          <button
+            type="submit"
+            data-testid="save-button"
+            disabled={ isSaveButtonDisabled }
+            onClick={ onSaveButtonClick }
           >
-            <option>normal</option>
-            <option>raro</option>
-            <option>muito raro</option>
-          </select>
-        </label>
-        <br />
-        <br />
-        <label htmlFor="checkboxInput">
-          Super Trybe Trunfo
-          <input
-            type="checkbox"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <br />
-        <button
-          type="submit"
-          data-testid="save-button"
-          disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
-        >
-          Salvar
-        </button>
-      </form>
-
+            Salvar
+          </button>
+        </form>
+      </div>
     );
   }
 }
@@ -138,9 +137,9 @@ class Form extends React.Component {
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,

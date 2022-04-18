@@ -17,10 +17,14 @@ class Card extends React.Component {
         <p data-testid="name-card">
           { cardName }
         </p>
-        <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-        <span data-testid="description-card">
+        <img
+          src={ cardImage }
+          alt={ cardName }
+          data-testid="image-card"
+        />
+        <p data-testid="description-card">
           { cardDescription }
-        </span>
+        </p>
         <p data-testid="attr1-card">
           { cardAttr1 }
         </p>
@@ -34,7 +38,7 @@ class Card extends React.Component {
           { cardRare }
         </p>
         <p>
-          {cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : <p />}
+          {cardTrunfo === true && <p data-testid="trunfo-card">Super Trunfo</p>}
         </p>
       </div>
 
@@ -45,9 +49,9 @@ class Card extends React.Component {
 Card.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
