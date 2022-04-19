@@ -62,7 +62,8 @@ class App extends React.Component {
 
   onSaveButtonClick = (e) => {
     e.preventDefault();
-    const { cardName,
+    const {
+      cardName,
       cardDescription,
       cardAttr1,
       cardAttr2,
@@ -71,14 +72,10 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       hasTrunfo,
-      cards } = this.state;
-    if (cardTrunfo === true) {
-      this.setState({
-        hasTrunfo: true,
-      });
-    }
-    const savedCards = [...cards];
-    const newCard = { cardName,
+      cards,
+    } = this.state;
+    const saveCards = {
+      cardName,
       cardDescription,
       cardAttr1,
       cardAttr2,
@@ -86,19 +83,21 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      hasTrunfo };
-
-    savedCards.push(newCard);
-
+      hasTrunfo,
+    };
+    cards.push(saveCards);
     this.setState({
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
       cardImage: '',
-      cardRare: '',
-      cards: savedCards,
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardRare: 'normal',
+    });
+    const isChecked = cards.some((checked) => checked.cardTrunfo === true);
+    this.setState({
+      hasTrunfo: isChecked,
     });
   }
 
@@ -144,12 +143,6 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
         />
         <div>
-          <button
-            data-testid="delete-button"
-            type="button"
-          >
-            Excluir
-          </button>
           {
             cards.map((card) => (
               <Card
@@ -165,6 +158,12 @@ class App extends React.Component {
               />
             ))
           }
+          <button
+            data-testid="delete-button"
+            type="button"
+          >
+            Excluir
+          </button>
         </div>
 
       </>

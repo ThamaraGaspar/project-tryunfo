@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Form extends React.Component {
+  deleteCard = ({ target }) => {
+    target.parentNode.remove();
+  }
+
   render() {
     const {
       cardName,
@@ -105,19 +109,17 @@ class Form extends React.Component {
           </label>
           <br />
           <br />
+          <p>Super Trybe Trunfo</p>
           <div>
-            <label htmlFor="checkboxInput">
-              Super Trybe Trunfo
-              {hasTrunfo === true && <p data-testid="trunfo-card">Super Trunfo</p>}
-              <input
-                name="cardTrunfo"
+            {
+              hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho</p> : <input
                 type="checkbox"
                 data-testid="trunfo-input"
+                name="cardTrunfo"
                 checked={ cardTrunfo }
                 onChange={ onInputChange }
               />
-
-            </label>
+            }
           </div>
           <br />
           <br />
