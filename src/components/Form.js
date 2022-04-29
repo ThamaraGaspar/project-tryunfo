@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Form extends React.Component {
-  deleteCard = ({ target }) => {
-    target.parentNode.remove();
-  }
-
   render() {
     const {
       cardName,
