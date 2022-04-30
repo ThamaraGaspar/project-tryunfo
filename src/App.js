@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import Filters from './components/Filters';
 import Form from './components/Form';
 
 class App extends React.Component {
@@ -17,6 +18,9 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       cards: [],
       hasTrunfo: false,
+      nameFilter: '',
+      rareFilter: 'todas',
+      trunfoFilter: false,
     };
   }
 
@@ -60,6 +64,18 @@ class App extends React.Component {
     });
   }
 
+  filterName = ({ target }) => {
+    this.setState({
+      [target.name]: target.value,
+    });
+  }
+
+  filterarity = () => {
+    this.setState(({ trunfoFilter }) => ({
+      trunfoFilter: !trunfoFilter,
+    }));
+  }
+
   onSaveButtonClick = (e) => {
     e.preventDefault();
     const {
@@ -101,65 +117,82 @@ class App extends React.Component {
     });
   }
 
-  removeCard = ({ target }) => {
+  onFilterChange = ({ target }) => {
+    console.log(target.value);
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  changeHasTrunfo = () => {
     const { cards } = this.state;
-    const filter = cards.filter((saveCards) => saveCards.cardName !== target.value);
-    this.setState({ cards: filter, hasTrunfo: false });
+    const changeTrunfo = cards
+      .some((filtered) => filtered.cardTrunfo === true);
+    this.setState({
+      hasTrunfo: changeTrunfo,
+    });
+  }
+
+  removeCard = (filtered) => {
+    const { cards } = this.state;
+    console.log(filtered);
+    const newKeyContents = cards
+      .filter(({ cardName }) => cardName !== filtered.cardName);
+    this.setState({
+      cards: newKeyContents,
+    }, () => this.changeHasTrunfo());
   }
 
   render() {
     const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
       isSaveButtonDisabled,
       cards,
-      hasTrunfo,
+      nameFilter,
+      rareFilter,
+      trunfoFilter,
     } = this.state;
+
+    const alreadyFiltered = (
+      trunfoFilter
+        ? cards.filter((c) => c.cardTrunfo === true)
+        : (
+          cards
+            .filter((filtered) => filtered.cardName.includes(nameFilter))
+            .filter((filtered) => (rareFilter === 'todas'
+              ? filtered : filtered.cardRare === rareFilter))
+        )
+    );
+
     return (
       <>
         <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
+          { ...this.state }
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
-          hasTrunfo={ hasTrunfo }
         />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
+        <Card { ...this.state } />
+        <Filters
+          { ... this.state }
+          filterarity={ this.filterarity }
+          filterName={ this.filterName }
         />
-        {cards.map((saveCards, index) => (
-          <div key={ index }>
-            <Card { ...saveCards } />
-            <button
-              type="button"
-              data-testid="delete-button"
-              onClick={ this.removeCard }
-              value={ saveCards.cardName }
-            >
-              Excluir
-            </button>
-          </div>))}
+        {alreadyFiltered
+          .map((filtered) => (
+            <div key={ filtered.cardName }>
+              <Card { ...filtered } />
+              <button
+                type="submit"
+                data-testid="delete-button"
+                onClick={ () => this.removeCard(filtered) }
+              >
+                Excluir
+              </button>
+            </div>
+          ))}
       </>
     );
   }
