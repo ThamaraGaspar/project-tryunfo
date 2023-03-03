@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Form.css';
 
 class Form extends React.Component {
   render() {
@@ -18,11 +19,10 @@ class Form extends React.Component {
       onSaveButtonClick,
     } = this.props;
     return (
-      <div>
-        <form>
-          <label htmlFor="name-input">
+      <div className="card">
+        <form className="contenier">
+          <label htmlFor="name-input" className="input-grop">
             Nome:
-            <br />
             <input
               type="text"
               data-testid="name-input"
@@ -31,24 +31,17 @@ class Form extends React.Component {
               onChange={ onInputChange }
             />
           </label>
-          <br />
-          <br />
-          <label htmlFor="description-input">
+          <label htmlFor="description-input" className="input-grop textatea">
             Descrição:
-            <br />
-            <input
-              type="text"
+            <textarea
               data-testid="description-input"
               name="cardDescription"
               value={ cardDescription }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr1-input">
+          <label htmlFor="attr1-input" className="input-grop att">
             Attr1
-            <br />
-            <br />
-
             <input
               type="number"
               data-testid="attr1-input"
@@ -57,7 +50,7 @@ class Form extends React.Component {
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr2-input">
+          <label htmlFor="attr2-input" className="input-grop att">
             Attr2
             <input
               type="number"
@@ -67,7 +60,7 @@ class Form extends React.Component {
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr3-input">
+          <label htmlFor="attr3-input" className="input-grop att">
             Attr3
             <input
               type="number"
@@ -78,7 +71,7 @@ class Form extends React.Component {
             />
           </label>
           <br />
-          <label htmlFor="image-input">
+          <label htmlFor="image-input" className="input-grop img">
             Adicionar Imagem:
             <input
               type="text"
@@ -88,7 +81,7 @@ class Form extends React.Component {
               name="cardImage"
             />
           </label>
-          <label htmlFor="optionsInput">
+          <label htmlFor="optionsInput" className="input-grop rare">
             Raridade:
             <br />
             <br />
@@ -103,10 +96,8 @@ class Form extends React.Component {
               <option>muito raro</option>
             </select>
           </label>
-          <br />
-          <br />
-          <p>Super Trybe Trunfo</p>
           <div>
+            <p>Super Trunfo</p>
             {
               hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho</p> : <input
                 type="checkbox"
@@ -119,14 +110,16 @@ class Form extends React.Component {
           </div>
           <br />
           <br />
-          <button
-            type="submit"
-            data-testid="save-button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
-          >
-            Salvar
-          </button>
+          <div className="input-grop button">
+            <button
+              type="submit"
+              data-testid="save-button"
+              disabled={ isSaveButtonDisabled }
+              onClick={ onSaveButtonClick }
+            >
+              Salvar
+            </button>
+          </div>
         </form>
       </div>
     );

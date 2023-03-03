@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  background-color: rgb(233, 229, 229);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgb(249, 242, 32);
+  padding: 20px;
+  width: 25%;
+}
+
+.input-grop {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-grop input {
+  background-color: rgb(209, 212, 17);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  display: block;
+  height: 30px;
+  margin-bottom: 5px;
+  outline: none;
+  padding: 15px;
+  width: 100%;
+}
+
+.input-grop :focus {
+  border-color: black;
+}
+
+.input-grop button {
+  background-color: rgb(209, 212, 17);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 30px;
+  margin-top: 15px;
+  outline: none;
+  width: 100%;
+}
+
+.input-grop .rare {
+  background-color: rgb(209, 212, 17);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  display: block;
+  height: 30px;
+  margin-bottom: 5px;
+  outline: none;
+  padding: 15px;
+  width: 100%;
+}

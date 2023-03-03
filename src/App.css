@@ -1,0 +1,11 @@
+body {
+  background-image: url('download.jpeg');
+}
+
+.container {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
